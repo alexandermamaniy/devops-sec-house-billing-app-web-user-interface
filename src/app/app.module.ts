@@ -12,11 +12,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { NavbarComponent } from './dashboard/components/navbar/navbar.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import {ProgressbarModule} from 'ngx-bootstrap/progressbar';
 import {PaginationModule} from 'ngx-bootstrap/pagination';
-import {DashboardModule} from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
