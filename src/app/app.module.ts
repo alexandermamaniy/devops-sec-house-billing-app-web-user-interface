@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { RouterModule } from "@angular/router";
 import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { ToastrModule } from "ngx-toastr";
@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import {ProgressbarModule} from 'ngx-bootstrap/progressbar';
 import {PaginationModule} from 'ngx-bootstrap/pagination';
+import {AuthenticationInterceptor} from './interceptors/authentication/authentication.interceptor';
+import {ErrorInterceptor} from './interceptors/error/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import {PaginationModule} from 'ngx-bootstrap/pagination';
   imports: [
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
     BsDropdownModule.forRoot(),
@@ -33,9 +36,17 @@ import {PaginationModule} from 'ngx-bootstrap/pagination';
     ProgressbarModule.forRoot(),
     PaginationModule.forRoot(),
     TagInputModule,
-    BrowserModule
+    BrowserModule,
+
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

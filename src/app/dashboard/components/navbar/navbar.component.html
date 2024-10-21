@@ -122,7 +122,7 @@
                 />
               </span>
               <div class="media-body ml-2 d-none d-lg-block">
-                <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
+                <span class="mb-0 text-sm  font-weight-bold">{{userProfile.full_name}}</span>
               </div>
             </div>
           </a>
@@ -162,7 +162,7 @@
               <i class="ni ni-support-16"></i> <span>Support</span>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="javascript:void()" class="dropdown-item">
+            <a (click)="logout()"  class="dropdown-item">
               <i class="ni ni-user-run"></i> <span>Logout</span>
             </a>
           </div>

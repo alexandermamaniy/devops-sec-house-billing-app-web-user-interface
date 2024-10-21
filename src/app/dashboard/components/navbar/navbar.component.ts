@@ -1,13 +1,20 @@
 
-import { Component, OnInit, ElementRef } from "@angular/core";
+import {Component, OnInit, ElementRef, Input} from '@angular/core';
 
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
 
 import {
   Location,
-  LocationStrategy,
-  PathLocationStrategy
 } from "@angular/common";
+
+
+interface UserData {
+  full_name: string;
+  user: {
+    email: string;
+  }
+}
+
 
 @Component({
   selector: "app-navbar",
@@ -19,6 +26,8 @@ export class NavbarComponent implements OnInit {
   // public listTitles: any[];
   public location: Location;
   sidenavOpen: boolean = true;
+  @Input() userProfile: UserData;
+
   constructor(
     location: Location,
     private element: ElementRef,
@@ -53,6 +62,10 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  logout() {
+    localStorage.removeItem("id_token");
+    this.router.navigateByUrl("/login");
+  }
 
   openSearch() {
     document.body.classList.add("g-navbar-search-showing");
@@ -77,27 +90,5 @@ export class NavbarComponent implements OnInit {
     setTimeout(function() {
       document.body.classList.remove("g-navbar-search-hidden");
     }, 500);
-  }
-  openSidebar() {
-    if (document.body.classList.contains("g-sidenav-pinned")) {
-      document.body.classList.remove("g-sidenav-pinned");
-      document.body.classList.add("g-sidenav-hidden");
-      this.sidenavOpen = false;
-    } else {
-      document.body.classList.add("g-sidenav-pinned");
-      document.body.classList.remove("g-sidenav-hidden");
-      this.sidenavOpen = true;
-    }
-  }
-  toggleSidenav() {
-    if (document.body.classList.contains("g-sidenav-pinned")) {
-      document.body.classList.remove("g-sidenav-pinned");
-      document.body.classList.add("g-sidenav-hidden");
-      this.sidenavOpen = false;
-    } else {
-      document.body.classList.add("g-sidenav-pinned");
-      document.body.classList.remove("g-sidenav-hidden");
-      this.sidenavOpen = true;
-    }
   }
 }

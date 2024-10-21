@@ -1,4 +1,6 @@
 import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {UserService} from '../services/user/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,8 +9,9 @@ import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   isMobileResolution: boolean;
+  userProfile:any;
 
-  constructor() {
+  constructor(private userService: UserService, private router: Router) {
     if (window.innerWidth < 1200) {
       this.isMobileResolution = true;
     } else {
@@ -17,7 +20,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-        throw new Error('Method not implemented.');
     }
   @HostListener("window:resize", ["$event"])
   isMobile(event) {
@@ -27,6 +29,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.isMobileResolution = false;
     }
   }
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("ingreso");
+    this.userService.getUserInformation().subscribe((data) => {
+      this.userProfile = data;
+      console.log("data : " + data.full_name);
+    }, (error) => {
+      console.log("Error perras: " + error);
+      this.router.navigateByUrl("/login");
+    })
+  }
 
 }
