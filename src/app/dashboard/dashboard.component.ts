@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.isMobileResolution = false;
     }
   }
+
   ngOnInit() {
     console.log("ingreso");
     this.userService.getUserInformation().subscribe((data) => {
@@ -37,7 +38,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }, (error) => {
       console.log("Error perras: " + error);
       this.router.navigateByUrl("/login");
-    })
+    });
+
+
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth/auth.service';
@@ -7,7 +7,7 @@ import {AuthService} from '../services/auth/auth.service';
   selector: "app-login",
   templateUrl: "login.component.html"
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   focus;
   focus1;
   form: FormGroup;
@@ -37,7 +37,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  //
+  register(){
+    this.router.navigateByUrl("/register");
+  }
+
   // logout() {
   //   localStorage.removeItem("id_token");
   //   localStorage.removeItem("expires_at");
@@ -57,5 +60,13 @@ export class LoginComponent implements OnInit {
   //   return moment(expiresAt);
   // }
 
-  ngOnInit() {}
+  ngOnDestroy() {
+    var body = document.getElementsByTagName("body")[0];
+    body.classList.remove("bg-default");
+  }
+
+  ngOnInit() {
+    var body = document.getElementsByTagName("body")[0];
+    body.classList.add("bg-default");
+  }
 }

@@ -65,7 +65,7 @@
               <small> Or sign up with credentials </small>
             </div>
 
-            <form role="form">
+            <form role="form" [formGroup]="form">
               <div class="form-group" [ngClass]="{ focused: focus === true }">
                 <div class="input-group input-group-alternative mb-3">
                   <div class="input-group-prepend">
@@ -74,8 +74,9 @@
                     ></span>
                   </div>
                   <input
+                    formControlName="full_name"
                     class="form-control"
-                    placeholder="Name"
+                    placeholder="Full name"
                     type="text"
                     (focus)="focus = true"
                     (blur)="focus = false"
@@ -90,6 +91,7 @@
                     ></span>
                   </div>
                   <input
+                    formControlName="email"
                     class="form-control"
                     placeholder="Email"
                     type="email"
@@ -106,6 +108,7 @@
                     ></span>
                   </div>
                   <input
+                    formControlName="password"
                     class="form-control"
                     placeholder="Password"
                     type="password"
@@ -143,7 +146,7 @@
                 </div>
               </div>
               <div class="text-center">
-                <button type="button" class="btn btn-primary mt-4">
+                <button (click)="createNewUser()" type="button" class="btn btn-primary mt-4">
                   Create account
                 </button>
               </div>
