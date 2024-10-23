@@ -16,6 +16,7 @@ import {ProgressbarModule} from 'ngx-bootstrap/progressbar';
 import {PaginationModule} from 'ngx-bootstrap/pagination';
 import {AuthenticationInterceptor} from './interceptors/authentication/authentication.interceptor';
 import {ErrorInterceptor} from './interceptors/error/error.interceptor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {ErrorInterceptor} from './interceptors/error/error.interceptor';
     PaginationModule.forRoot(),
     TagInputModule,
     BrowserModule,
+    NgbModule,
 
   ],
   providers: [

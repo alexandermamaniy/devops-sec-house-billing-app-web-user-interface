@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-// @ts-ignore
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-modal-list-settle-up',
