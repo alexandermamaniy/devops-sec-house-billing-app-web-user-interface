@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
-  selector: 'app-modal-list-settle-up',
-  templateUrl: './modal-list-settle-up.component.html',
-  styleUrls: ['./modal-list-settle-up.component.scss']
+  selector: 'app-modal-create-expense',
+  templateUrl: './modal-create-expense.component.html',
+  styleUrls: ['./modal-create-expense.component.scss']
 })
-export class ModalListSettleUpComponent implements OnInit {
+export class ModalCreateExpenseComponent {
+
 
   closeResult: string;
 

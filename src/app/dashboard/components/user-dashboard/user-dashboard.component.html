@@ -10,11 +10,20 @@
 
 <div class=" container-fluid mt--6">
   <div class=" row justify-content-center">
-    <div class=" col-lg-8 card-wrapper">
+    <div class=" col-lg-9 card-wrapper">
       <div class="card" >
 
-        <div  class=" card-header"><h3 class=" h3 mb-0">Your expenses</h3></div>
+<!--        <div  class=" card-header"><h3 class=" h3 mb-0">Your expenses</h3></div>-->
+        <div class=" card-header border-0">
+          <div class=" row">
+            <div class=" col-6"><h3 class=" mb-0">Your Expenses</h3></div>
 
+            <div class=" col-6 text-right">
+              <app-modal-create-expense></app-modal-create-expense>
+
+            </div>
+          </div>
+        </div>
         <div  id="list-expenses" class=" card-body my_scroll_div">
           <ul class="list-group list-group-flush list my--3" >
             <li *ngFor="let item of [0, 1,2,3, 6, 7]" class=" list-group-item px-0">

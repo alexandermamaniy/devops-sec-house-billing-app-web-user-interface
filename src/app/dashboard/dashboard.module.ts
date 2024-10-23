@@ -14,6 +14,7 @@ import {ProgressbarModule} from 'ngx-bootstrap/progressbar';
 import { ExpensesComponent } from './components/expenses/expenses.component';
 import {UserDashboardComponent} from './components/user-dashboard/user-dashboard.component';
 import { ModalListSettleUpComponent } from './components/modal-list-settle-up/modal-list-settle-up.component';
+import { ModalCreateExpenseComponent } from './components/modal-create-expense/modal-create-expense.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { ModalListSettleUpComponent } from './components/modal-list-settle-up/mo
     ExpensesComponent,
     UserDashboardComponent,
     ModalListSettleUpComponent,
-    ModalListSettleUpComponent
+    ModalCreateExpenseComponent
   ],
   imports: [
     CommonModule,

@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'user', component: UserDashboardComponent },
   { path: 'admin', component: AdminDashboardComponent },
   { path: 'expense', component: ExpensesComponent },
-  { path: 'group', component: GroupComponent }
+  { path: 'group/:id', component: GroupComponent }
 ];
 
 
