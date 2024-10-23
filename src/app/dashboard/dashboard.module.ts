@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
-import {TableComponent} from './components/table/table.component';
-import {Table2Component} from './components/table2/table2.component';
+import {AdminDashboardComponent} from './components/admin-dashboard/admin-dashboard.component';
+import {GroupComponent} from './components/group/group.component';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {DashboardRoutingModule} from './dashboard-routing.module';
@@ -10,13 +10,21 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {DxPieChartModule, DxVectorMapModule} from 'devextreme-angular';
+import {ProgressbarModule} from 'ngx-bootstrap/progressbar';
+import { ExpensesComponent } from './components/expenses/expenses.component';
+import {UserDashboardComponent} from './components/user-dashboard/user-dashboard.component';
+import { ModalListSettleUpComponent } from './components/modal-list-settle-up/modal-list-settle-up.component';
 
 @NgModule({
   declarations: [
-    TableComponent,
-    Table2Component,
+    AdminDashboardComponent,
+    GroupComponent,
     DashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    ExpensesComponent,
+    UserDashboardComponent,
+    ModalListSettleUpComponent,
+    ModalListSettleUpComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +32,7 @@ import {DxPieChartModule, DxVectorMapModule} from 'devextreme-angular';
     CollapseModule.forRoot(),
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
+    ProgressbarModule.forRoot(),
     DxVectorMapModule,
     DxPieChartModule,
     DashboardRoutingModule

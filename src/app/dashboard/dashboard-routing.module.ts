@@ -1,12 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { TableComponent } from "./components/table/table.component";
-import { Table2Component } from "./components/table2/table2.component";
+import { AdminDashboardComponent } from "./components/admin-dashboard/admin-dashboard.component";
+import { GroupComponent } from "./components/group/group.component";
+import {ExpensesComponent} from './components/expenses/expenses.component';
+import {UserDashboardComponent} from './components/user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
-  { path: 'table', component: TableComponent },
-  { path: 'table-two', component: Table2Component }
+  {
+    path: "",
+    redirectTo: "user",
+    pathMatch: "full"
+  },
+  { path: 'user', component: UserDashboardComponent },
+  { path: 'admin', component: AdminDashboardComponent },
+  { path: 'expense', component: ExpensesComponent },
+  { path: 'group', component: GroupComponent }
 ];
 
 

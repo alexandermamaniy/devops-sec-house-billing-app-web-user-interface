@@ -1,0 +1,68 @@
+<div class=" header pb-6">
+  <div class=" container-fluid">
+    <div class=" header-body">
+      <div class=" row align-items-center py-4">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class=" container-fluid mt--6">
+  <div class=" row justify-content-center">
+    <div class=" col-lg-8 card-wrapper">
+      <div class="card" >
+
+        <div  class=" card-header"><h3 class=" h3 mb-0">Your expenses</h3></div>
+
+        <div  id="list-expenses" class=" card-body my_scroll_div">
+          <ul class="list-group list-group-flush list my--3" >
+            <li *ngFor="let item of [0, 1,2,3, 6, 7]" class=" list-group-item px-0">
+              <div class=" row align-items-center">
+                <div class=" col-auto">
+                  <a class=" avatar rounded-circle" href="javascript:void(0)">
+                    <img
+                      alt="Image placeholder"
+                      src="assets/img/theme/team-2.jpg"
+                    />
+                  </a>
+                </div>
+
+                <div class=" col ml--2">
+                  <div class=" row ">
+                    <div class=" col-4 col-md-4"><span> Date: 10/06/2021 </span></div>
+                    <div class=" col-4 col-md-4"><span> Group: Los pros </span></div>
+                    <div class=" col-4 col-md-4"><span> Currency: EUR </span></div>
+
+                  </div>
+
+                  <div class=" row ">
+                    <div class=" col-4 col-md-4"><span> Title: Lo que sea </span></div>
+                    <div class=" col-8 col-md-8"><span> Description: Lo que sea </span></div>
+                  </div>
+
+                  <div class=" row ">
+                    <div class=" col-4 col-md-4"><span> Payable amount: $12 </span></div>
+
+                    <div class=" col-8 col-md-8"><span> Paid amount: 10 </span></div>
+                  </div>
+                </div>
+
+                <div class=" col-auto">
+                  <button class=" btn btn-sm btn-primary" type="button">
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<app-modal-list-settle-up></app-modal-list-settle-up>
