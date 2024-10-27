@@ -1,0 +1,74 @@
+
+<a
+  class="nav-link"
+  role="button"
+  (click)="open(classic,'' , 'lg')">
+  <i class="ni ni-fat-add"></i>
+  <span class="mb-0 text-sm font-weight-bold">New group</span>
+</a>
+
+<ng-template #classic let-c="close" let-d="dismiss">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="col-6 col-md-6">
+        <h1 class="modal-title" id="modal-title-default"></h1>
+      </div>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class=" card-wrapper">
+        <div class=" card">
+          <div class=" card-header"><h3 class=" mb-0">Group Registration</h3></div>
+          <div class=" card-body">
+            <form role="form" [formGroup]="form" >
+              <div class=" form-group" >
+                <label class=" form-control-label">
+                  Group name
+                </label>
+                <div class=" input-group input-group-merge">
+                  <div class=" input-group-prepend">
+                        <span class=" input-group-text">
+                          <i class=" fas fa-home"> </i>
+                        </span>
+                  </div>
+
+                  <input
+                    class=" form-control"
+                    placeholder="Group name"
+                    type="text"
+                    formControlName="name"
+                  />
+                </div>
+              </div>
+
+              <div class=" form-group" >
+                <label class=" form-control-label">
+                  Members
+                </label>
+
+                <div class=" input-group input-group-merge">
+                  <div class=" input-group-prepend">
+                        <span class=" input-group-text">
+                          <i class=" fas fa-user"> </i>
+                        </span>
+                  </div>
+                  <select multiple formControlName="group_members" class=" form-control" data-toggle="selectr1" id="selectr1"   data-live-search="true"   data-live-search-placeholder="Search ..."  >
+                    <option *ngFor="let user of users" value="{{user.id}}"> {{ user.full_name }} </option>
+                  </select>
+                  <br />
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="create_group()" >Create</button>
+      <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal" (click)="c('Close click')">Close</button>
+    </div>
+  </div>
+</ng-template>

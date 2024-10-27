@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   isMobileResolution: boolean;
-  userProfile:any;
+  userProfile:any ={};
 
   constructor(private userService: UserService, private router: Router) {
     if (window.innerWidth < 1200) {
@@ -21,6 +21,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     }
+
+
   @HostListener("window:resize", ["$event"])
   isMobile(event) {
     if (window.innerWidth < 1200) {
@@ -31,14 +33,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log("ingreso");
     this.userService.getUserInformation().subscribe((data) => {
       this.userProfile = data;
-      console.log("data : " + data.full_name);
     }, (error) => {
       console.log("Error perras: " + error);
       this.router.navigateByUrl("/login");
     });
+
 
   }
 

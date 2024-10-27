@@ -20,4 +20,13 @@ export class UserService {
     return this.http.post(this.url+'buddy-profiles/',user);
   }
 
+  getMemberAndAdminOfAGroup(group_id): Observable<any>  {
+    return this.http.get<any>(this.url+'buddy-profiles/group/'+group_id);
+  }
+
+
+  getAllMembers(): Observable<any> {
+    return this.http.get<any>(this.url+'buddy-profiles/');
+  }
+
 }

@@ -12,78 +12,42 @@
   <div class=" row justify-content-center">
     <div class=" col-lg-8 card-wrapper">
 
-<!--      <div class="card" >-->
-
-<!--        <div  class=" card-header"><h3 class=" h3 mb-0">Your expenses</h3></div>-->
-
-<!--        <div  id="list-expenses" class=" card-body my_scroll_div">-->
-<!--          <ul class="list-group list-group-flush list my&#45;&#45;3" >-->
-
-<!--            <li *ngFor="let item of [0, 1,2,3, 6, 7]" class=" list-group-item px-0">-->
-<!--              <div class=" row align-items-center">-->
-<!--                <div class=" col-auto">-->
-<!--                  <a class=" avatar rounded-circle" href="javascript:void(0)">-->
-<!--                    <img-->
-<!--                      alt="Image placeholder"-->
-<!--                      src="assets/img/theme/team-1.jpg"-->
-<!--                    />-->
-<!--                  </a>-->
-<!--                </div>-->
-
-<!--                <div class=" col ml&#45;&#45;2">-->
-<!--                  <h4 class=" mb-0">-->
-<!--                    <a href="javascript:void(0)"> John Michael </a>-->
-<!--                  </h4>-->
-
-<!--                  <span class=" text-success"> ● </span>-->
-
-<!--                  <small> Online </small>-->
-<!--                </div>-->
-
-<!--                <div class=" col-auto">-->
-<!--                  <button class=" btn btn-sm btn-primary" type="button">-->
-<!--                    Add-->
-<!--                  </button>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--        </div>-->
-<!--      </div>-->
-
       <div class=" card">
         <div class=" card-header"><h3 class=" mb-0">Manage your groups</h3></div>
 
         <div class=" card-body">
           <div class=" row">
 
-            <div *ngFor="let item of [0, 1,2,3, 6, 7]" class=" col-xl-3 col-md-6">
-              <div class=" card card-stats">
+            <div *ngFor="let group of profileGroups.groups_that_manage" class=" col-xl-3 col-md-6">
+
+              <div (click)="groupDetail(group.id)" class=" card card-stats">
                 <div class=" card-body">
                   <div class=" row">
                     <div class=" col">
                       <h5 class=" card-title text-uppercase text-muted mb-0">
-                        Total traffic
+                        {{group.name}}
                       </h5>
 
-                      <span class=" h2 font-weight-bold mb-0"> 350,897 </span>
+                      <span class=" h2 font-weight-bold mb-0">  </span>
                     </div>
 
                     <div class=" col-auto">
                       <div
                         class=" icon icon-shape bg-gradient-red text-white rounded-circle shadow"
                       >
-                        <i class=" ni ni-active-40"> </i>
+                        <i class=" ni ni-building"> </i>
                       </div>
                     </div>
                   </div>
 
-                  <p class=" mt-3 mb-0 text-sm">
-                <span class=" text-success mr-2">
-                  <i class=" fa fa-arrow-up"> </i> 3.48%
-                </span>
+                  <p *ngIf="group.group_members.length != 0" class=" mt-3 mb-0 text-sm">
+                    <span class=" text-nowrap"> {{ group.group_members.length }} members in this house</span>
 
-                    <span class=" text-nowrap"> Since last month </span>
+                  </p>
+                  <p >
+                    <span class=" text-success">
+                       Created {{getDate(group.created_date) }}
+                    </span>
                   </p>
                 </div>
               </div>

@@ -6,6 +6,7 @@ import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '
 import {
   Location,
 } from "@angular/common";
+import {GroupService} from '../../../services/group/group.service';
 
 
 interface UserData {
@@ -15,6 +16,10 @@ interface UserData {
   }
 }
 
+interface GroupData {
+  groups_that_manage: any[];
+  groups_that_belong: any[]
+}
 
 @Component({
   selector: "app-navbar",
@@ -28,12 +33,12 @@ export class NavbarComponent implements OnInit {
   sidenavOpen: boolean = true;
   @Input() userProfile: UserData;
 
-  constructor(
-    location: Location,
-    private element: ElementRef,
-    private router: Router
-  ) {
+  profileGroups:GroupData;
+  isAdmin: boolean;
+
+  constructor(location: Location, private router: Router, private groupService: GroupService) {
     this.location = location;
+
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         // Show loading indicator
@@ -58,8 +63,18 @@ export class NavbarComponent implements OnInit {
     });
 
   }
+  updateData(){
+    console.log("me llevo el evento");
+  }
 
   ngOnInit() {
+    this.groupService.getGroups().subscribe((data) => {
+      this.profileGroups = data;
+      console.log(this.profileGroups)
+      this.isAdmin = this.profileGroups.groups_that_manage.length === 0 ? false : true;
+      console.log(this.isAdmin);
+    });
+
   }
 
   logout() {

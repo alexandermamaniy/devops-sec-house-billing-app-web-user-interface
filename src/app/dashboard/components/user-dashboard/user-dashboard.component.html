@@ -18,15 +18,15 @@
           <div class=" row">
             <div class=" col-6"><h3 class=" mb-0">Your Expenses</h3></div>
 
-            <div class=" col-6 text-right">
-              <app-modal-create-expense></app-modal-create-expense>
+            <div *ngIf="isAdmin" class=" col-6 text-right">
+              <app-modal-create-expense [groupId]="groipId"></app-modal-create-expense>
 
             </div>
           </div>
         </div>
         <div  id="list-expenses" class=" card-body my_scroll_div">
           <ul class="list-group list-group-flush list my--3" >
-            <li *ngFor="let item of [0, 1,2,3, 6, 7]" class=" list-group-item px-0">
+            <li *ngFor="let expense of expenses" class=" list-group-item px-0">
               <div class=" row align-items-center">
                 <div class=" col-auto">
                   <a class=" avatar rounded-circle" href="javascript:void(0)">
@@ -39,19 +39,19 @@
 
                 <div class=" col ml--2">
                   <div class=" row ">
-                    <div class=" col-4 col-md-4"><span> Date: 10/06/2021 </span></div>
-                    <div class=" col-4 col-md-4"><span> Group: Los pros </span></div>
-                    <div class=" col-4 col-md-4"><span> Currency: EUR </span></div>
+                    <div class=" col-4 col-md-4"><span> Date: {{getDate(expense.created_date)}} </span></div>
+                    <div class=" col-4 col-md-4"><span> Group: {{getGroupName(expense.buddy_group)}} </span></div>
+                    <div class=" col-4 col-md-4"><span> Currency: {{expense.currency}} </span></div>
 
                   </div>
 
                   <div class=" row ">
-                    <div class=" col-4 col-md-4"><span> Title: Lo que sea </span></div>
-                    <div class=" col-8 col-md-8"><span> Description: Lo que sea </span></div>
+                    <div class=" col-4 col-md-4"><span> Title: {{expense.title}} </span></div>
+                    <div class=" col-8 col-md-8"><span> Description: {{ expense.description }} </span></div>
                   </div>
 
                   <div class=" row ">
-                    <div class=" col-4 col-md-4"><span> Payable amount: $12 </span></div>
+                    <div class=" col-4 col-md-4"><span> Payable amount: {{expense.total_amount}} </span></div>
 
                     <div class=" col-8 col-md-8"><span> Paid amount: 10 </span></div>
                   </div>

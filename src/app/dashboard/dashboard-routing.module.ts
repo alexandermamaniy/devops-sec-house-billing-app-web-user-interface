@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AdminDashboardComponent } from "./components/admin-dashboard/admin-dashboard.component";
 import { GroupComponent } from "./components/group/group.component";
-import {ExpensesComponent} from './components/expenses/expenses.component';
 import {UserDashboardComponent} from './components/user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
@@ -14,7 +13,6 @@ const routes: Routes = [
   },
   { path: 'user', component: UserDashboardComponent },
   { path: 'admin', component: AdminDashboardComponent },
-  { path: 'expense', component: ExpensesComponent },
   { path: 'group/:id', component: GroupComponent }
 ];
 

@@ -32,7 +32,9 @@ export class LoginComponent implements OnInit, OnDestroy {
          console.log("User is logged in", data);
          this.setSession(data);
          this.router.navigateByUrl("/dashboard");
-      }
+      }, error => {
+
+        }
       );
     }
   }

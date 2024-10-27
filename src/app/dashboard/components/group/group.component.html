@@ -27,7 +27,6 @@
             <span class=" btn-inner--icon">
               <i class=" fas fa-user-edit"> </i>
             </span>
-
                 <span class=" btn-inner--text"> Add member </span>
               </a>
             </div>
@@ -38,211 +37,37 @@
           <table class=" table align-items-center table-flush table-striped">
             <thead class=" thead-light">
             <tr>
-              <th>Author</th>
+              <th>Full name</th>
 
-              <th>Created at</th>
 
-              <th>Product</th>
+              <th>Email</th>
 
               <th></th>
             </tr>
             </thead>
 
             <tbody>
-            <tr>
+            <tr *ngFor="let member of members_and_admins_of_group.members_of_group ">
               <td class=" table-user">
                 <img
                   class=" avatar rounded-circle mr-3"
                   src="assets/img/theme/team-1.jpg"
                 />
 
-                <b> John Michael </b>
+                <b> {{member.full_name}} </b>
               </td>
-
-              <td><span class=" text-muted"> 10/09/2018 </span></td>
-
               <td>
                 <a class=" font-weight-bold" href="javascript:void(0)">
-                  Argon Dashboard PRO
+                  {{member.user.email}}
                 </a>
               </td>
-
               <td class=" table-actions">
-                <a
-                  class="table-action"
-                  tooltip="Edit product"
-                  placement="top"
-                  href="javascript:void(0)"
-                >
-                  <i class=" fas fa-user-edit"> </i>
-                </a>
-
-                <a
-                  class=" table-action table-action-delete"
-                  tooltip="Delete product"
-                  placement="top"
-                  href="javascript:void(0)"
-                >
+                <a class=" table-action table-action-delete" tooltip="Delete product" placement="top">
                   <i class=" fas fa-trash"> </i>
                 </a>
               </td>
             </tr>
 
-            <tr>
-              <td class=" table-user">
-                <img
-                  class=" avatar rounded-circle mr-3"
-                  src="assets/img/theme/team-2.jpg"
-                />
-
-                <b> Alex Smith </b>
-              </td>
-
-              <td><span class=" text-muted"> 08/09/2018 </span></td>
-
-              <td>
-                <a class=" font-weight-bold" href="javascript:void(0)">
-                  Argon Design System
-                </a>
-              </td>
-
-              <td class=" table-actions">
-                <a
-                  class="table-action"
-                  tooltip="Edit product"
-                  placement="top"
-                  href="javascript:void(0)"
-                >
-                  <i class=" fas fa-user-edit"> </i>
-                </a>
-
-                <a
-                  class=" table-action table-action-delete"
-                  tooltip="Delete product"
-                  placement="top"
-                  href="javascript:void(0)"
-                >
-                  <i class=" fas fa-trash"> </i>
-                </a>
-              </td>
-            </tr>
-
-            <tr>
-              <td class=" table-user">
-                <img
-                  class=" avatar rounded-circle mr-3"
-                  src="assets/img/theme/team-3.jpg"
-                />
-
-                <b> Samantha Ivy </b>
-              </td>
-
-              <td><span class=" text-muted"> 30/08/2018 </span></td>
-
-              <td>
-                <a class=" font-weight-bold" href="javascript:void(0)">
-                  Black Dashboard
-                </a>
-              </td>
-
-              <td class=" table-actions">
-                <a
-                  class="table-action"
-                  tooltip="Edit product"
-                  placement="top"
-                  href="javascript:void(0)"
-                >
-                  <i class=" fas fa-user-edit"> </i>
-                </a>
-
-                <a
-                  class=" table-action table-action-delete"
-                  tooltip="Delete product"
-                  placement="top"
-                  href="javascript:void(0)"
-                >
-                  <i class=" fas fa-trash"> </i>
-                </a>
-              </td>
-            </tr>
-
-            <tr>
-              <td class=" table-user">
-                <img
-                  class=" avatar rounded-circle mr-3"
-                  src="assets/img/theme/team-1.jpg"
-                />
-
-                <b> John Michael </b>
-              </td>
-
-              <td><span class=" text-muted"> 10/09/2018 </span></td>
-
-              <td>
-                <a class=" font-weight-bold" href="javascript:void(0)">
-                  Argon Dashboard PRO
-                </a>
-              </td>
-
-              <td class=" table-actions">
-                <a
-                  class="table-action"
-                  tooltip="Edit product"
-                  placement="top"
-                  href="javascript:void(0)"
-                >
-                  <i class=" fas fa-user-edit"> </i>
-                </a>
-
-                <a
-                  class=" table-action table-action-delete"
-                  tooltip="Delete product"
-                  placement="top"
-                  href="javascript:void(0)"
-                >
-                  <i class=" fas fa-trash"> </i>
-                </a>
-              </td>
-            </tr>
-
-            <tr>
-              <td class=" table-user">
-                <img
-                  class=" avatar rounded-circle mr-3"
-                  src="assets/img/theme/team-2.jpg"
-                />
-
-                <b> John Michael </b>
-              </td>
-
-              <td><span class=" text-muted"> 10/09/2018 </span></td>
-
-              <td>
-                <a class=" font-weight-bold" href="javascript:void(0)">
-                  Argon Dashboard PRO
-                </a>
-              </td>
-
-              <td class=" table-actions">
-                <a
-                  class="table-action"
-                  tooltip="Edit product"
-                  placement="top"
-                  href="javascript:void(0)"
-                >
-                  <i class=" fas fa-user-edit"> </i>
-                </a>
-
-                <a
-                  class=" table-action table-action-delete"
-                  tooltip="Delete product"
-                  placement="top"
-                  href="javascript:void(0)"
-                >
-                  <i class=" fas fa-trash"> </i>
-                </a>
-              </td>
-            </tr>
             </tbody>
           </table>
         </div>
@@ -253,4 +78,4 @@
 
 
 
-<app-user-dashboard></app-user-dashboard>
+<app-user-dashboard [isAdmin]=true [groipId]=groupId></app-user-dashboard>

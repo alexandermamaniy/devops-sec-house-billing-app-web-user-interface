@@ -11,10 +11,11 @@ import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {DxPieChartModule, DxVectorMapModule} from 'devextreme-angular';
 import {ProgressbarModule} from 'ngx-bootstrap/progressbar';
-import { ExpensesComponent } from './components/expenses/expenses.component';
 import {UserDashboardComponent} from './components/user-dashboard/user-dashboard.component';
 import { ModalListSettleUpComponent } from './components/modal-list-settle-up/modal-list-settle-up.component';
 import { ModalCreateExpenseComponent } from './components/modal-create-expense/modal-create-expense.component';
+import { ModalCreateGroupComponent } from './components/modal-create-group/modal-create-group.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,10 +23,10 @@ import { ModalCreateExpenseComponent } from './components/modal-create-expense/m
     GroupComponent,
     DashboardComponent,
     NavbarComponent,
-    ExpensesComponent,
     UserDashboardComponent,
     ModalListSettleUpComponent,
-    ModalCreateExpenseComponent
+    ModalCreateExpenseComponent,
+    ModalCreateGroupComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +37,9 @@ import { ModalCreateExpenseComponent } from './components/modal-create-expense/m
     ProgressbarModule.forRoot(),
     DxVectorMapModule,
     DxPieChartModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class DashboardModule { }
