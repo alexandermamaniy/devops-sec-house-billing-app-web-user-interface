@@ -64,11 +64,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     var body = document.getElementsByTagName("body")[0];
-    body.classList.remove("bg-default");
+    body.classList.remove("bg-info");
   }
 
   ngOnInit() {
     var body = document.getElementsByTagName("body")[0];
-    body.classList.add("bg-default");
+    body.classList.add("bg-info");
   }
 }

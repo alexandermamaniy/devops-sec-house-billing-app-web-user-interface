@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import {ExpenseService} from '../../../services/expense/expense.service';
 
 
 @Component({
@@ -10,8 +11,9 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class ModalListSettleUpComponent implements OnInit {
 
   closeResult: string;
-
-  constructor(private modalService: NgbModal) {}
+  @Input() settle_up_id;
+  public list_settle_up: any;
+  constructor(private modalService: NgbModal, private expenseSerivice: ExpenseService) {}
 
   open(content, type, modalDimension) {
     if (modalDimension === 'sm' && type === 'modal_mini') {
@@ -51,6 +53,10 @@ export class ModalListSettleUpComponent implements OnInit {
     }
   }
   ngOnInit() {
+    console.log("from modal settle up", this.settle_up_id)
+    this.expenseSerivice.getSettleUps(this.settle_up_id).subscribe(data => {
+      this.list_settle_up = data;
+    })
   }
 
 }

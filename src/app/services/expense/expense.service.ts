@@ -24,4 +24,8 @@ export class ExpenseService {
   createExpense(data): Observable<any> {
     return this.http.post(this.url+'buddy-expenses/',data);
   }
+
+  getSettleUps(expense_id): Observable<any>{
+      return this.http.get(this.url+'buddy-expenses/settle-up/'+expense_id);
+  }
 }
