@@ -28,4 +28,10 @@ export class ExpenseService {
   getSettleUps(expense_id): Observable<any>{
       return this.http.get(this.url+'buddy-expenses/settle-up/'+expense_id);
   }
+
+  settleUpExpenseParticipant(data): Observable<any> {
+    return this.http.post(this.url+'buddy-expenses/settle-up-participant',data);
+  }
+
+
 }

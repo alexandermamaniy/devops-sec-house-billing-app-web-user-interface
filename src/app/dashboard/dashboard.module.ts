@@ -15,6 +15,7 @@ import { ModalListSettleUpComponent } from './components/modal-list-settle-up/mo
 import { ModalCreateExpenseComponent } from './components/modal-create-expense/modal-create-expense.component';
 import { ModalCreateGroupComponent } from './components/modal-create-group/modal-create-group.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ModalSettleExpenseUpComponent} from './components/modal-settle-expense-up/modal-settle-expense-up.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     UserDashboardComponent,
     ModalListSettleUpComponent,
     ModalCreateExpenseComponent,
-    ModalCreateGroupComponent
+    ModalCreateGroupComponent,
+    ModalSettleExpenseUpComponent
   ],
   imports: [
     CommonModule,

@@ -11,6 +11,8 @@ import {ExpenseService} from '../../../services/expense/expense.service';
 export class ModalListSettleUpComponent implements OnInit {
 
   closeResult: string;
+
+  @Input() groupId;
   @Input() settle_up_id;
   public list_settle_up: any;
   constructor(private modalService: NgbModal, private expenseSerivice: ExpenseService) {}
@@ -56,6 +58,7 @@ export class ModalListSettleUpComponent implements OnInit {
     console.log("from modal settle up", this.settle_up_id)
     this.expenseSerivice.getSettleUps(this.settle_up_id).subscribe(data => {
       this.list_settle_up = data;
+      console.log(this.list_settle_up, "from settle**************");
     })
   }
 

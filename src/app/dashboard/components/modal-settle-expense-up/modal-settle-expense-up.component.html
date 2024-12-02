@@ -1,0 +1,112 @@
+<a
+  class=" btn btn-sm btn-primary btn-round btn-icon"
+  href="javascript:void(0)"
+  tooltip="Edit product"
+  placement="top"
+  (click)="open(classic,'' , 'lg')"
+>
+            <span class=" btn-inner--icon">
+              <i class=" fas fa-user-edit"> </i>
+            </span>
+
+  <span class=" btn-inner--text"> Settle a new expense up </span>
+</a>
+
+<ng-template #classic let-c="close" let-d="dismiss">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="col-6 col-md-6">
+        <h6 class="modal-title" id="modal-title-default">This is a new Settle up</h6>
+      </div>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class=" card">
+        <div class=" card-header"><h3 class=" mb-0">Settle expense up</h3></div>
+        <div class=" card-body">
+          <form role="form" [formGroup]="form" >
+
+            <!-- Amount -->
+            <div class=" form-group" >
+              <label for="total_amount" class=" form-control-label">
+                Total Amount
+              </label>
+              <div class=" input-group input-group-merge">
+                <div class=" input-group-prepend">
+                        <span class=" input-group-text">
+                          <i class=" fas fa-home"> </i>
+                        </span>
+                </div>
+
+                <input
+                  id="total_amount"
+                  class=" form-control"
+                  placeholder="Expense description"
+                  type="number"
+                  formControlName="amount_payment"
+                />
+              </div>
+            </div>
+            <!-- Currency -->
+            <div class=" form-group" >
+              <label for="currency_id" class=" form-control-label">
+                Currency
+              </label>
+
+              <div class=" input-group input-group-merge">
+                <div class=" input-group-prepend">
+                        <span class=" input-group-text">
+                          <i class=" fas fa-user"> </i>
+                        </span>
+                </div>
+                <select  formControlName="currency" id="currency_id" class="form-control"  >
+                  <option selected value="EUR"> EUR </option>
+                  <option value="USD"> USD </option>
+                </select>
+                <br />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="member_id" class=" form-control-label">
+                Participant
+              </label>
+              <select formControlName="who_settle_simple_payment_up" id="member_id" class="form-control" id="exampleFormControlSelect1">
+                <option  value="{{participant.id}}" *ngFor="let participant of members_and_admins_of_group ">{{participant.full_name}}</option>
+              </select>
+            </div>
+
+
+            <!-- Participans -->
+<!--            <div name="participantsexpenese" class=" form-group" >-->
+<!--              <label class=" form-control-label">-->
+<!--                Participants-->
+<!--              </label>-->
+
+<!--              <div  name="member_expense_user" id="{{participant.id}}" *ngFor="let participant of members_and_admins_of_group " class=" input-group input-group-merge">-->
+<!--                <div class=" input-group-prepend">-->
+<!--                        <span class=" input-group-text">-->
+<!--                          <i class=" fas fa-user"> </i>-->
+<!--                        </span>-->
+<!--                </div>-->
+<!--                <div class="input-group-prepend">-->
+<!--                  <span class="input-group-text" id="basic-addon3">{{participant.full_name}}</span>-->
+<!--                </div>-->
+
+<!--                <input id="value-member" type="number" class="form-control" aria-describedby="basic-addon3">-->
+<!--              </div>-->
+<!--            </div>-->
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+
+      <button type="button" class="btn btn-primary" (click)="settle_up()" >Create</button>
+      <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal" (click)="c('Close click')">Close</button>
+    </div>
+  </div>
+</ng-template>
