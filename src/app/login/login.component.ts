@@ -43,32 +43,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl("/register");
   }
 
-  // logout() {
-  //   localStorage.removeItem("id_token");
-  //   localStorage.removeItem("expires_at");
-  // }
-  //
-  // public isLoggedIn() {
-  //   return moment().isBefore(this.getExpiration());
-  // }
-  //
-  // isLoggedOut() {
-  //   return !this.isLoggedIn();
-  // }
-  //
-  // getExpiration() {
-  //   const expiration = localStorage.getItem("expires_at");
-  //   const expiresAt = JSON.parse(expiration);
-  //   return moment(expiresAt);
-  // }
 
   ngOnDestroy() {
     var body = document.getElementsByTagName("body")[0];
-    body.classList.remove("bg-info");
+    body.classList.remove("bg-default");
   }
 
   ngOnInit() {
     var body = document.getElementsByTagName("body")[0];
-    body.classList.add("bg-info");
+    body.classList.add("bg-default");
   }
 }
