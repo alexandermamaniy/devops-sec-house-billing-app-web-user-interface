@@ -9,7 +9,7 @@
 
       </div>
 
-      <div class=" col-5 col-md-5 text-right">
+      <div *ngIf="isAdmin" class=" col-5 col-md-5 text-right">
         <app-modal-settle-expense-up [expensa_id]="settle_up_id" [groupId]="groupId"></app-modal-settle-expense-up>
       </div>
 

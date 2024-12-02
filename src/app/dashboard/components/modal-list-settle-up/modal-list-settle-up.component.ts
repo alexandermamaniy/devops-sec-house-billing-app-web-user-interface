@@ -12,6 +12,7 @@ export class ModalListSettleUpComponent implements OnInit {
 
   closeResult: string;
 
+  @Input() isAdmin: boolean;
   @Input() groupId;
   @Input() settle_up_id;
   public list_settle_up: any;
