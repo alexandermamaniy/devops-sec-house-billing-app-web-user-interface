@@ -1,9 +1,7 @@
 name: Build release Docker image
 
 on:
-  # Trigger the action manually from the UI
   workflow_dispatch:
-  # Trigger the action when I create or push a `release/**` branch
   push:
     branches:
       - 'staging/**'
@@ -14,45 +12,30 @@ env:
 
 jobs:
 
-#  sonarqube:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v4
-#        with:
-#          # Disabling shallow clones is recommended for improving the relevancy of reporting
-#          fetch-depth: 0
-#      - name: enter to the project directory
-#        run: cd devops-sec-house-billing-app-web-user-interface
-#      - name: Official SonarQube Scan
-#        uses: SonarSource/sonarqube-scan-action@v4.0.0
-#        env:
-#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-#          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
-  sonarqube:
+  tests_cases_and_sonarqube:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          # Disabling shallow clones is recommended for improving the relevancy of reporting
           fetch-depth: 0
-      - name: Install dependencies
+
+      - name: Install node Dependencies
         run: npm install
 
-      - name: Execute tests
+      - name: Execute angular test cases and generate coverage report
         run: npm run test:headless
 
-      - name: Execute sonar scan
+      - name: Execute sonar scan and publish the report
         run: npm run sonar-scanner -- -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
 
   build_docker_images:
-    # Job name that shows in the GitHub UI
+
     name: Build House billing interface Docker Image and then publish it to docker hub registry
 
     # Runner to use
     runs-on: ubuntu-latest
-    needs: sonarqube
+    needs: tests_cases_and_sonarqube
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -98,25 +81,25 @@ jobs:
     - name: Remove the local image
       run: docker rmi $DOCKER_IMAGE_NAME:$RELEASE_VERSION
 
-#  create-pull-request-to-pre-production:
-#    # Job that run the unit tests
-#    name: Pull request to Main branch
-#    needs: build_docker_images
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v4
-#        with:
-#          fetch-depth: 0
-#
-#      - name: Update AUTHORS
-#        run: |
-#          git log --format='%aN <%aE>%n%cN <%cE>' | sort -u > AUTHORS
-#
-#      - name: Create Pull Request
-#        uses: peter-evans/create-pull-request@v7
-#        with:
-#          token: ${{ secrets.TOKEN_GITHUB }}
-#          commit-message: Automated request to ${{ github.event.workflow_run.head_commit.message }}
-#          title: Update $STAGING_BRANCH_NAME branch to main branch
-#          body: $STAGING_BRANCH_NAME - ${{ github.event.workflow_run.head_commit.message }}
-#          branch: main
+  create-pull-request-to-pre-production:
+    # Job that run the unit tests
+    name: Pull request to Main branch
+    needs: build_docker_images
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update AUTHORS
+        run: |
+          git log --format='%aN <%aE>%n%cN <%cE>' | sort -u > AUTHORS
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.TOKEN_GITHUB }}
+          commit-message: Automated request to ${{ github.event.workflow_run.head_commit.message }}
+          title: Update $STAGING_BRANCH_NAME branch to main branch
+          body: $STAGING_BRANCH_NAME - ${{ github.event.workflow_run.head_commit.message }}
+          branch: main

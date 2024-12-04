@@ -57,5 +57,5 @@ describe('ModalSettleExpenseUpComponent', () => {
     expect(userService.getMemberAndAdminOfAGroup).toHaveBeenCalledWith('test-group-id');
     expect(component.members_and_admins_of_group).toEqual([{ id: '1', name: 'User 1' }]);
   });
-  
+
 });
