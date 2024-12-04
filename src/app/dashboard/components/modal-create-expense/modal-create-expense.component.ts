@@ -77,12 +77,13 @@ export class ModalCreateExpenseComponent implements OnInit{
 
   create_expense(){
     let membersnode: any = document.getElementsByName("member_expense_user");
-    for( let i=0 ; i < membersnode.length ; i++ ){
 
-      let id_user =  membersnode[i].id;
-      let amount_user =  membersnode[i].getElementsByTagName("input")[0].value;
-      this.addItem( id_user,  amount_user );
+    for (const memberNode of membersnode) {
+      let id_user = memberNode.id;
+      let amount_user = memberNode.getElementsByTagName("input")[0].value;
+      this.addItem(id_user, amount_user);
     }
+
     this.form.value.buddy_group = this.groupId;
     console.log(this.form.value)
     this.expenseService.createExpense(this.form.value).subscribe(data => {
