@@ -18,6 +18,8 @@
       "ES2022",
       "dom"
     ],
-    
+    "types": ["dom"], // or ["dom"] depending on your use case
+    "skipLibCheck": true // optional: prevents checking type conflicts
+
   }
 }

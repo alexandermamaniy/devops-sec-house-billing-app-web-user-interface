@@ -14,7 +14,9 @@ getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting()
 );
-// Then we find all the tests.
-const context = require.context("./", true, /\.spec\.ts$/);
-// And load the modules.
-context.keys().map(context);
+
+
+const specFiles = Object.keys((window as any).__karma__.files).filter(file => /\.spec\.ts$/.test(file));
+specFiles.forEach(file => {
+  require(file);
+});
