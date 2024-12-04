@@ -4,6 +4,8 @@
 .scannerwork/*
 reports/*
 
+src/coverage/*
+
 # compiled output
 /dist
 /tmp
