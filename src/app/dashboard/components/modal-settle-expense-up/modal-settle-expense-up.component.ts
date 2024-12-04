@@ -22,7 +22,7 @@ export class ModalSettleExpenseUpComponent extends  ModalOpenParent implements O
 
   public form: FormGroup;
 
-  constructor(private  fb: FormBuilder, protected modalService: NgbModal, private router:Router, private expenseService:ExpenseService, private userService: UserService) {
+  constructor(private  fb: FormBuilder, public modalService: NgbModal, private router:Router, private expenseService:ExpenseService, private userService: UserService) {
     super(modalService);
     this.form = this.fb.group({
       who_settle_simple_payment_up: ["", Validators.required],

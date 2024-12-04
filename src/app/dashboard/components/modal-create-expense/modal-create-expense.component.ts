@@ -20,7 +20,7 @@ export class ModalCreateExpenseComponent extends ModalOpenParent implements OnIn
 
 
 
-  constructor(private  fb: FormBuilder, protected modalService: NgbModal, private router:Router,
+  constructor(private  fb: FormBuilder, public modalService: NgbModal, private router:Router,
               private expenseService:ExpenseService, private userService: UserService) {
     super(modalService);
     this.form = this.fb.group({

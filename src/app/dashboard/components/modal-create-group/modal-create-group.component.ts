@@ -17,7 +17,7 @@ export class ModalCreateGroupComponent extends ModalOpenParent implements OnInit
   users: any;
   form: FormGroup;
 
-  constructor(private  fb: FormBuilder,protected modalService: NgbModal, public userService: UserService,
+  constructor(private  fb: FormBuilder,public modalService: NgbModal, public userService: UserService,
               private groupService: GroupService, private router:Router) {
     super(modalService);
     this.form = this.fb.group({

@@ -16,7 +16,7 @@ export class ModalListSettleUpComponent extends ModalOpenParent implements OnIni
   @Input() groupId;
   @Input() settle_up_id;
   public list_settle_up: any;
-  constructor( protected modalService: NgbModal, private expenseSerivice: ExpenseService) {
+  constructor( public modalService: NgbModal, private expenseSerivice: ExpenseService) {
     super(modalService);
   }
 
