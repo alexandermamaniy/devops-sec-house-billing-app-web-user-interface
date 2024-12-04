@@ -21,6 +21,8 @@ jobs:
         with:
           # Disabling shallow clones is recommended for improving the relevancy of reporting
           fetch-depth: 0
+      - name: enter to the project directory
+        run: cd devops-sec-house-billing-app-web-user-interface
       - name: Official SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v4.0.0
         env:
@@ -33,7 +35,7 @@ jobs:
 
     # Runner to use
     runs-on: ubuntu-latest
-
+    needs: sonarqube
     steps:
     - name: Checkout
       uses: actions/checkout@v3
