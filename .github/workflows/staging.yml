@@ -79,25 +79,25 @@ jobs:
     - name: Remove the local image
       run: docker rmi $DOCKER_IMAGE_NAME:$RELEASE_VERSION
 
-  create-pull-request-to-pre-production:
-    # Job that run the unit tests
-    name: Pull request to Main branch
-    needs: build_docker_images
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Update AUTHORS
-        run: |
-          git log --format='%aN <%aE>%n%cN <%cE>' | sort -u > AUTHORS
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.TOKEN_GITHUB }}
-          commit-message: Automated request to ${{ github.event.workflow_run.head_commit.message }}
-          title: Update $STAGING_BRANCH_NAME branch to main branch
-          body: $STAGING_BRANCH_NAME - ${{ github.event.workflow_run.head_commit.message }}
-          branch: main
+#  create-pull-request-to-pre-production:
+#    # Job that run the unit tests
+#    name: Pull request to Main branch
+#    needs: build_docker_images
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v4
+#        with:
+#          fetch-depth: 0
+#
+#      - name: Update AUTHORS
+#        run: |
+#          git log --format='%aN <%aE>%n%cN <%cE>' | sort -u > AUTHORS
+#
+#      - name: Create Pull Request
+#        uses: peter-evans/create-pull-request@v7
+#        with:
+#          token: ${{ secrets.TOKEN_GITHUB }}
+#          commit-message: Automated request to ${{ github.event.workflow_run.head_commit.message }}
+#          title: Update $STAGING_BRANCH_NAME branch to main branch
+#          body: $STAGING_BRANCH_NAME - ${{ github.event.workflow_run.head_commit.message }}
+#          branch: main
