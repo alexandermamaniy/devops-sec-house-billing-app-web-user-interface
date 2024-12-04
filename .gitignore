@@ -2,9 +2,8 @@
 
 
 .scannerwork/*
-reports/*
-
-src/coverage/*
+reports
+src/coverage
 
 # compiled output
 /dist

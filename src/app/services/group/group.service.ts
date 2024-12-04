@@ -20,10 +20,4 @@ export class GroupService {
     return this.http.post(this.url+'buddy-groups/',data);
   }
 
-
-  // getGroupByID(group_id): Observable<any>  {
-  //   return this.http.get<any>(this.url+'buddy-groups/'+group_id);
-  // }
-
-
 }

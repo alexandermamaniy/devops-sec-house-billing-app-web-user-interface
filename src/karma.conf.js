@@ -14,7 +14,7 @@ module.exports = function (config) {
       require('karma-sonarqube-reporter'), // This one
     ],
     coverageReporter: {
-      type: 'html',
+      type: 'lcov',
       dir: require('path').join(__dirname, 'coverage/house-billing'),
       subdir: '.',
       fixWebpackSourcePaths: true
@@ -23,7 +23,7 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     sonarqubeReporter: {
-      basePath: "../src", // test files folder
+      basePath: ".", // test files folder
       filePattern: '**/*spec.ts', // test files glob pattern
       encoding: 'utf-8', // test files encoding
       outputFolder: 'reports', // report destination
