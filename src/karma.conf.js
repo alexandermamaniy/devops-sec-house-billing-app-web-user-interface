@@ -23,7 +23,7 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     sonarqubeReporter: {
-      basePath: ".", // test files folder
+      basePath: "../src", // test files folder
       filePattern: '**/*spec.ts', // test files glob pattern
       encoding: 'utf-8', // test files encoding
       outputFolder: 'reports', // report destination
@@ -47,7 +47,7 @@ module.exports = function (config) {
     //   fixWebpackSourcePaths: true
     // },
 
-    reporters: ['sonarqube', 'progress', 'coverage'],
+    reporters: ['coverage', 'sonarqube', 'progress'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
