@@ -5,37 +5,8 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Search form -->
-      <form
-        class="navbar-search navbar-search-light form-inline mr-sm-3"
-        id="navbar-search-main"
-      >
-        <div class="form-group mb-0" [ngClass]="{ focused: focus === true }">
-          <div class="input-group input-group-alternative input-group-merge">
-            <div class="input-group-prepend">
-              <span class="input-group-text"
-              ><i class="fas fa-search"></i
-              ></span>
-            </div>
-            <input
-              class="form-control"
-              placeholder="Search"
-              type="text"
-              (focus)="focus = true"
-              (blur)="focus = false"
-            />
-          </div>
-        </div>
-        <button
-          type="button"
-          class="close"
-          (click)="closeSearch()"
-          data-action="search-close"
-          data-target="#navbar-search-main"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">×</span>
-        </button>
-      </form>
+      <h4 class="navbar-nav navbar-text font-weight-bold">House Billing App</h4>
+
       <!-- Navbar links -->
       <ul class="navbar-nav align-items-center ml-md-auto">
 

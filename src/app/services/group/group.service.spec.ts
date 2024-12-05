@@ -25,7 +25,7 @@ describe('GroupService', () => {
   });
 
   it('should get groups', () => {
-    const dummyGroups = [{ id: 1, name: 'Group 1' }, { id: 2, name: 'Group 2' }];
+    const dummyGroups = [{ id: 1, name: 'The best group ever existed' }, { id: 2, name: 'Group 2' }];
 
     service.getGroups().subscribe(groups => {
       expect(groups).toEqual(dummyGroups);
@@ -36,9 +36,9 @@ describe('GroupService', () => {
     req.flush(dummyGroups);
   });
 
-  it('should create a new group', () => {
-    const newGroup = { name: 'New Group' };
-    const createdGroup = { id: 1, name: 'New Group' };
+  it('should create a The best group ever existed', () => {
+    const newGroup = { name: 'The best group ever existed' };
+    const createdGroup = { id: 1, name: 'The best group ever existed' };
 
     service.createGroup(newGroup).subscribe(group => {
       expect(group).toEqual(createdGroup);

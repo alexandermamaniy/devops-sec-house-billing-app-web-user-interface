@@ -15,21 +15,7 @@
       <div class=" card">
         <div class=" card-header border-0">
           <div class=" row">
-            <div class=" col-6"><h3 class=" mb-0">Members</h3></div>
-
-            <div class=" col-6 text-right">
-              <a
-                class=" btn btn-sm btn-primary btn-round btn-icon"
-                href="javascript:void(0)"
-                tooltip="Edit product"
-                placement="top"
-              >
-            <span class=" btn-inner--icon">
-              <i class=" fas fa-user-edit"> </i>
-            </span>
-                <span class=" btn-inner--text"> Add member </span>
-              </a>
-            </div>
+            <div class=" col-12"><h3 class=" mb-0">Members</h3></div>
           </div>
         </div>
 
@@ -42,7 +28,6 @@
 
               <th>Email</th>
 
-              <th></th>
             </tr>
             </thead>
 
@@ -50,9 +35,8 @@
             <tr *ngFor="let member of members_and_admins_of_group.members_of_group ">
               <td class=" table-user">
                 <img
-                  class=" avatar rounded-circle mr-3"
-                  src="assets/img/user.png"
-                />
+                  class="avatar rounded-circle mr-3"
+                  src="assets/img/user.png"/>
 
                 <b> {{member.full_name}} </b>
               </td>
@@ -61,11 +45,7 @@
                   {{member.user.email}}
                 </a>
               </td>
-              <td class=" table-actions">
-                <a class=" table-action table-action-delete" tooltip="Delete product" placement="top">
-                  <i class=" fas fa-trash"> </i>
-                </a>
-              </td>
+
             </tr>
 
             </tbody>

@@ -25,9 +25,9 @@ describe('AuthService', () => {
   });
 
   it('should login and return a user', () => {
-    const dummyUser = { email: 'test@example.com', password: 'password123' };
-    const email = 'test@example.com';
-    const password = 'password123';
+    const dummyUser = { email: 'test@housebilling.com', password: 'FakeHouseBilling' };
+    const email = 'test@housebilling.com';
+    const password = 'FakeHouseBilling';
 
     service.login(email, password).subscribe(user => {
       expect(user).toEqual(dummyUser);

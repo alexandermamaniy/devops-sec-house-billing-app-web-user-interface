@@ -11,7 +11,7 @@ import {ModalOpenParent} from '../modal-open-parent';
 })
 export class ModalListSettleUpComponent extends ModalOpenParent implements OnInit {
 
-
+  @Input() expenseName: string;
   @Input() isAdmin: boolean;
   @Input() groupId;
   @Input() settle_up_id;

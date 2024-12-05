@@ -25,7 +25,7 @@ describe('UserService', () => {
   });
 
   it('should get user information', () => {
-    const dummyUser = { id: 1, name: 'John Doe' };
+    const dummyUser = { id: 1, name: 'Alexander' };
 
     service.getUserInformation().subscribe(user => {
       expect(user).toEqual(dummyUser);
@@ -37,8 +37,8 @@ describe('UserService', () => {
   });
 
   it('should create a new user', () => {
-    const newUser = { name: 'Jane Doe' };
-    const createdUser = { id: 2, name: 'Jane Doe' };
+    const newUser = { name: 'Carmela' };
+    const createdUser = { id: 2, name: 'Carmela' };
 
     service.createNewUser(newUser).subscribe(user => {
       expect(user).toEqual(createdUser);
@@ -51,7 +51,7 @@ describe('UserService', () => {
 
   it('should get members and admin of a group', () => {
     const groupId = 1;
-    const members = [{ id: 1, name: 'John Doe' }, { id: 2, name: 'Jane Doe' }];
+    const members = [{ id: 1, name: 'Alexander' }, { id: 2, name: 'Carmela' }];
 
     service.getMemberAndAdminOfAGroup(groupId).subscribe(data => {
       expect(data).toEqual(members);
@@ -63,7 +63,7 @@ describe('UserService', () => {
   });
 
   it('should get all members', () => {
-    const members = [{ id: 1, name: 'John Doe' }, { id: 2, name: 'Jane Doe' }];
+    const members = [{ id: 1, name: 'Alexander' }, { id: 2, name: 'Carmela' }];
 
     service.getAllMembers().subscribe(data => {
       expect(data).toEqual(members);
