@@ -13,11 +13,13 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  name: Deploy Frontend container to AWS EC2
+
   deploy:
     name: Deploy Frontend container to AWS EC2
     runs-on: ubuntu-latest
     steps:
-      - name: Configure SSH
+      - name: Configure SSH credentials to connect to the AWS EC2 instance
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
@@ -34,6 +36,6 @@ jobs:
             LogLevel ERROR
             StrictHostKeyChecking no
           END
-      - name: Run deploy
+      - name: Update the Docker image and execute the new features on the AWS EC2 instance
         run: |
           ssh target "cd devops-sec-house-billing-app-deploy/angular-webapp-deploy/ && docker compose -f docker-compose.staging.yml down && docker pull $DOCKER_REGISTRY_URL/$DOCKER_IMAGE_NAME:latest && docker compose -f docker-compose.staging.yml up -d --force-recreate"

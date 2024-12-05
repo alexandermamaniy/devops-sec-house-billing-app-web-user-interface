@@ -13,6 +13,8 @@ env:
 jobs:
 
   tests_cases_and_sonarqube:
+    name: Execute House billing interface tests and generate the coverage file, then execute the SonarScan and update the coverage file to SonarQube instance in AWS
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -58,7 +60,7 @@ jobs:
       run: docker build --build-arg STAGING_BRANCH_NAME=$STAGING_BRANCH_NAME --build-arg TOKEN_GITHUB=${{ secrets.TOKEN_GITHUB }}  --file Dockerfile-nginx.staging --tag $DOCKER_IMAGE_NAME:$RELEASE_VERSION --no-cache .
 
     # Tag the Docker Images
-    - name: Tag the image for the registry ${{DOCKER_REGISTRY_URL}}
+    - name: Tag the image for the registry
       run: docker tag $DOCKER_IMAGE_NAME:$RELEASE_VERSION $DOCKER_REGISTRY_URL/$DOCKER_IMAGE_NAME:$RELEASE_VERSION
 
     - name: Create a latest image as well
@@ -82,8 +84,8 @@ jobs:
       run: docker rmi $DOCKER_IMAGE_NAME:$RELEASE_VERSION
 
   create-pull-request-to-pre-production:
-    # Job that run the unit tests
-    name: Pull request to Main branch
+
+    name: Make a pull request to Main branch to deploy the new feature to production servers
     needs: build_docker_images
     runs-on: ubuntu-latest
     steps:
