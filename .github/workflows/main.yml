@@ -13,8 +13,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  name: Deploy Frontend container to AWS EC2
-
   deploy:
     name: Deploy Frontend container to AWS EC2
     runs-on: ubuntu-latest
