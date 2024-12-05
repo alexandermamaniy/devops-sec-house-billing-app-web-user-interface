@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'staging/**'
+      - 'release/**'
 
 env:
   DOCKER_IMAGE_NAME: house_billing_nginx_service
