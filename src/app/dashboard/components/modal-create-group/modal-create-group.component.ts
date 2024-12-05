@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {GroupService} from '../../../services/group/group.service';
 import {Router} from '@angular/router';
 import {ModalOpenParent} from '../modal-open-parent';
+import {alphanumericValidator} from '../validators';
 
 @Component({
   selector: 'app-modal-create-group',
@@ -21,10 +22,9 @@ export class ModalCreateGroupComponent extends ModalOpenParent implements OnInit
               private groupService: GroupService, private router:Router) {
     super(modalService);
     this.form = this.fb.group({
-      name: ["", Validators.required],
-      group_members: ["", Validators.required]
+      name: ["", [Validators.required, alphanumericValidator()]],
+      group_members: ["", [Validators.required]]
     })
-
   }
 
 
@@ -36,14 +36,16 @@ export class ModalCreateGroupComponent extends ModalOpenParent implements OnInit
 
   }
   create_group(){
-    this.groupService.createGroup(this.form.value).subscribe(data=> {
-      console.log("response from server", data);
-      this.form.reset();
-      this.modalService.dismissAll();
-      // this.createGroupEvent.emit(); // in case you want to emit event
+    if(this.form.valid ){
+      this.groupService.createGroup(this.form.value).subscribe(data=> {
+        console.log("response from server", data);
+        this.form.reset();
+        this.modalService.dismissAll();
+        // this.createGroupEvent.emit(); // in case you want to emit event
 
-      this.reloadCurrentRoute()
-    })
+        this.reloadCurrentRoute()
+      })
+    }
   }
 
   reloadCurrentRoute() {

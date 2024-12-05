@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(private  fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.form = this.fb.group({
-      email: ["", Validators.required],
-      password: ["", Validators.required]
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", [Validators.required, Validators.minLength(3)]]
     })
   }
 
@@ -26,14 +26,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login(){
     const  val = this.form.value;
-    if(val.email && val.password ){
+    if(this.form.get('email').valid && this.form.get('password').valid ){
       this.authService.login(val.email, val.password)
         .subscribe( (data) => {
          console.log("User is logged in", data);
          this.setSession(data);
          this.router.navigateByUrl("/dashboard");
       }, error => {
-
+          console.log("Error ingreso", error);
         }
       );
     }

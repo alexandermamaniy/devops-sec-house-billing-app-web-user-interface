@@ -5,6 +5,7 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ExpenseService} from '../../../services/expense/expense.service';
 import {UserService} from '../../../services/user/user.service';
 import {ModalOpenParent} from '../modal-open-parent';
+import {alphanumericValidator, numericValidator} from '../validators';
 
 
 @Component({
@@ -24,9 +25,9 @@ export class ModalCreateExpenseComponent extends ModalOpenParent implements OnIn
               private expenseService:ExpenseService, private userService: UserService) {
     super(modalService);
     this.form = this.fb.group({
-      title: ["", Validators.required],
-      description: ["", Validators.required],
-      total_amount: ["", Validators.required],
+      title: ["", [Validators.required, alphanumericValidator()]],
+      description: ["", [Validators.required, alphanumericValidator()]],
+      total_amount: ["", [Validators.required, numericValidator()]],
       currency: ["", Validators.required],
       participants_of_expense_payment: this.fb.array([]),
       buddy_group: [this.groupId, Validators.required]
@@ -41,6 +42,7 @@ export class ModalCreateExpenseComponent extends ModalOpenParent implements OnIn
   }
 
   create_expense(){
+
     let membersnode: any = document.getElementsByName("member_expense_user");
 
     for (const memberNode of membersnode) {
@@ -51,14 +53,20 @@ export class ModalCreateExpenseComponent extends ModalOpenParent implements OnIn
 
     this.form.value.buddy_group = this.groupId;
     console.log(this.form.value)
-    this.expenseService.createExpense(this.form.value).subscribe(data => {
-      console.log(data);
-      this.form.reset();
-      this.modalService.dismissAll();
+    console.log(this.form.get('title').errors, this.form.get('title').valid)
+    console.log(this.form.get('description').errors, this.form.get('description').valid)
+    console.log(this.form.get('total_amount').errors, this.form.get('total_amount').valid)
+    console.log(this.form.get('currency').errors, this.form.get('currency').valid)
 
-      this.reloadCurrentRoute();
-    })
+    if(this.form.get('title').valid && this.form.get('description').valid  && this.form.get('currency').valid){
+      this.expenseService.createExpense(this.form.value).subscribe(data => {
+        console.log(data);
+        this.form.reset();
+        this.modalService.dismissAll();
 
+        this.reloadCurrentRoute();
+      })
+    }
   }
 
   reloadCurrentRoute() {

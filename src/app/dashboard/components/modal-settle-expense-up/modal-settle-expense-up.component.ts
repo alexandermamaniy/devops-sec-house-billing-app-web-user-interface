@@ -5,6 +5,7 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ExpenseService} from '../../../services/expense/expense.service';
 import {UserService} from '../../../services/user/user.service';
 import {ModalOpenParent} from '../modal-open-parent';
+import {numericValidator} from '../validators';
 
 
 
@@ -25,9 +26,9 @@ export class ModalSettleExpenseUpComponent extends  ModalOpenParent implements O
   constructor(private  fb: FormBuilder, public modalService: NgbModal, private router:Router, private expenseService:ExpenseService, private userService: UserService) {
     super(modalService);
     this.form = this.fb.group({
-      who_settle_simple_payment_up: ["", Validators.required],
-      what_expense_belong: ["", Validators.required],
-      amount_payment: ["", Validators.required]
+      who_settle_simple_payment_up: ["", [Validators.required]],
+      what_expense_belong: ["", [Validators.required]],
+      amount_payment: ["", [ Validators.required , numericValidator()]]
     })
   }
   ngOnInit() {
@@ -39,12 +40,14 @@ export class ModalSettleExpenseUpComponent extends  ModalOpenParent implements O
 
   settle_up(){
     this.form.value.what_expense_belong = this.expensa_id;
-    this.expenseService.settleUpExpenseParticipant(this.form.value).subscribe(data => {
-      console.log(data);
-      this.form.reset();
-      this.modalService.dismissAll();
-      this.reloadCurrentRoute();
-    })
+    if(this.form.get("amount_payment").valid){
+      this.expenseService.settleUpExpenseParticipant(this.form.value).subscribe(data => {
+        console.log(data);
+        this.form.reset();
+        this.modalService.dismissAll();
+        this.reloadCurrentRoute();
+      })
+    }
   }
 
 

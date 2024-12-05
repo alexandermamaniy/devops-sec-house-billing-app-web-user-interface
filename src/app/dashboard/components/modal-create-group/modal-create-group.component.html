@@ -41,6 +41,10 @@
                     formControlName="name"
                   />
                 </div>
+                <div *ngIf="form.get('name').invalid && form.get('name').touched" class="text-danger">
+                  <small *ngIf="form.get('name').errors.required">Group name is required.</small>
+                  <small *ngIf="form.get('name').errors.alphanumeric">Group name must be alphanumeric.</small>
+                </div>
               </div>
 
               <div class=" form-group" >
@@ -58,6 +62,9 @@
                     <option *ngFor="let user of users" value="{{user.id}}"> {{ user.full_name }} </option>
                   </select>
                   <br />
+                </div>
+                <div *ngIf="form.get('name').invalid && form.get('name').touched" class="text-danger">
+                  <small *ngIf="form.get('name').errors.required">Group name is required.</small>
                 </div>
               </div>
 

@@ -48,6 +48,10 @@
                   formControlName="title"
                 />
               </div>
+              <div *ngIf="form.get('title').invalid && form.get('title').touched" class="text-danger">
+                <small *ngIf="form.get('title').errors.required">Title is required.</small>
+                <small *ngIf="form.get('title').errors.alphanumeric">Title must be alphanumeric.</small>
+              </div>
             </div>
             <!-- description -->
             <div class=" form-group" >
@@ -70,6 +74,10 @@
                   formControlName="description"
                 ></textarea>
               </div>
+              <div *ngIf="form.get('description').invalid && form.get('description').touched" class="text-danger">
+                <small *ngIf="form.get('description').errors.required">Description is required.</small>
+                <small *ngIf="form.get('description').errors.alphanumeric">Description must be alphanumeric.</small>
+              </div>
             </div>
             <!-- Amount -->
             <div class=" form-group" >
@@ -90,6 +98,9 @@
                   type="number"
                   formControlName="total_amount"
                 />
+              </div>
+              <div *ngIf="form.get('total_amount').invalid && form.get('total_amount').touched" class="text-danger">
+                <small *ngIf="form.get('total_amount').errors.numeric || form.get('total_amount').errors.required">Total amount is required and it must be numeric.</small>
               </div>
             </div>
             <!-- Currency -->
@@ -115,7 +126,7 @@
             <!-- Participans -->
             <div name="participantsexpenese" class=" form-group" >
               <label class=" form-control-label">
-                Participants
+                Payment for each Participant
               </label>
               <div  name="member_expense_user" id="{{participant.id}}" *ngFor="let participant of members_and_admins_of_group " class=" input-group input-group-merge">
                 <div class=" input-group-prepend">
@@ -129,6 +140,7 @@
 
                 <input id="value-member" type="number" class="form-control" aria-describedby="basic-addon3">
               </div>
+
             </div>
           </form>
         </div>

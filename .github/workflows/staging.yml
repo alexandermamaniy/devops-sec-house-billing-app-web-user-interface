@@ -58,7 +58,7 @@ jobs:
       run: docker build --build-arg STAGING_BRANCH_NAME=$STAGING_BRANCH_NAME --build-arg TOKEN_GITHUB=${{ secrets.TOKEN_GITHUB }}  --file Dockerfile-nginx.staging --tag $DOCKER_IMAGE_NAME:$RELEASE_VERSION --no-cache .
 
     # Tag the Docker Images
-    - name: Tag the image for the registry $DOCKER_REGISTRY_URL
+    - name: Tag the image for the registry ${{DOCKER_REGISTRY_URL}}
       run: docker tag $DOCKER_IMAGE_NAME:$RELEASE_VERSION $DOCKER_REGISTRY_URL/$DOCKER_IMAGE_NAME:$RELEASE_VERSION
 
     - name: Create a latest image as well

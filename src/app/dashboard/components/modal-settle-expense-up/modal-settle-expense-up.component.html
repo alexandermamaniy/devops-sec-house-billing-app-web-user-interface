@@ -31,7 +31,7 @@
 
             <!-- Amount -->
             <div class=" form-group" >
-              <label for="total_amount" class=" form-control-label">
+              <label for="amount_payment" class=" form-control-label">
                 Total Amount
               </label>
               <div class=" input-group input-group-merge">
@@ -42,12 +42,15 @@
                 </div>
 
                 <input
-                  id="total_amount"
+                  id="amount_payment"
                   class=" form-control"
-                  placeholder="Expense description"
+                  placeholder="Expense amount to pay"
                   type="number"
                   formControlName="amount_payment"
                 />
+              </div>
+              <div *ngIf="form.get('amount_payment').invalid && form.get('amount_payment').touched" class="text-danger">
+                <small *ngIf="form.get('amount_payment').errors.numeric || form.get('amount_payment').errors.required" >Total amount is required and it must be numeric.</small>
               </div>
             </div>
             <!-- Currency -->
@@ -62,7 +65,7 @@
                           <i class=" fas fa-user"> </i>
                         </span>
                 </div>
-                <select  formControlName="currency" id="currency_id" class="form-control"  >
+                <select  id="currency_id" class="form-control"  >
                   <option selected value="EUR"> EUR </option>
                   <option value="USD"> USD </option>
                 </select>
