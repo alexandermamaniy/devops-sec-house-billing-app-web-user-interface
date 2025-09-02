@@ -30,7 +30,7 @@ export class GroupComponent implements OnInit, OnDestroy {
       this.groupId = params.get('id')!;
       this.userService.getMemberAndAdminOfAGroup(this.groupId).subscribe(data => {
         this.members_and_admins_of_group = data;
-        console.log("FRom group component", this.groupId,this.members_and_admins_of_group);
+        // console.log("FRom group component", this.groupId,this.members_and_admins_of_group);
       });
     });
 

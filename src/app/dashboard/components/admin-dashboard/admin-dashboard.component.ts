@@ -32,7 +32,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy{
       this.profileGroups  = data;
     })
 
-    console.log(this.profileGroups)
+    // console.log(this.profileGroups)
         // throw new Error('Method not implemented.');
     }
 

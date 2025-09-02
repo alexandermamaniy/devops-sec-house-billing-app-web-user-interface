@@ -32,7 +32,7 @@ export class ModalSettleExpenseUpComponent extends  ModalOpenParent implements O
     })
   }
   ngOnInit() {
-    console.log("on init",this.groupId);
+    // console.log("on init",this.groupId);
     this.userService.getMemberAndAdminOfAGroup(this.groupId).subscribe(data => {
       this.members_and_admins_of_group = data.members_of_group;
     });
@@ -42,7 +42,7 @@ export class ModalSettleExpenseUpComponent extends  ModalOpenParent implements O
     this.form.value.what_expense_belong = this.expensa_id;
     if(this.form.get("amount_payment").valid){
       this.expenseService.settleUpExpenseParticipant(this.form.value).subscribe(data => {
-        console.log(data);
+        // console.log(data);
         this.form.reset();
         this.modalService.dismissAll();
         this.reloadCurrentRoute();

@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.userService.getUserInformation().subscribe((data) => {
       this.userProfile = data;
     }, (error) => {
-      console.log("Error perras: " + error);
+      // console.log("Error perras: " + error);
       this.router.navigateByUrl("/login");
     });
 

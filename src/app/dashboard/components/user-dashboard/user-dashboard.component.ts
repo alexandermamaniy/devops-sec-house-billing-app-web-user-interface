@@ -69,17 +69,17 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log("group id",this.groipId);
+    // console.log("group id",this.groipId);
     if(this.isAdmin && this.groipId !=""){
 
       this.expenseService.getExpenseByGroupId(this.groipId).subscribe(data => {
         this.expenses  = data;
-        console.log("from admin",this.expenses);
+        // console.log("from admin",this.expenses);
       })
     } else {
       this.expenseService.getExpenseByUserAuthenticated().subscribe(data => {
         this.expenses  = data;
-        console.log("from member",this.expenses);
+        // console.log("from member",this.expenses);
       })
     }
 
@@ -89,7 +89,7 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
       } else {
         this.groups = data.groups_that_belong;
       }
-      console.log("groups : ",this.groups);
+      // console.log("groups : ",this.groups);
     })
   }
 

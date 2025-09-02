@@ -21,10 +21,8 @@ export class ModalListSettleUpComponent extends ModalOpenParent implements OnIni
   }
 
   ngOnInit() {
-    console.log("from modal settle up", this.settle_up_id)
     this.expenseSerivice.getSettleUps(this.settle_up_id).subscribe(data => {
       this.list_settle_up = data;
-      console.log(this.list_settle_up, "from settle**************");
     })
   }
 

@@ -29,11 +29,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     if(this.form.get('email').valid && this.form.get('password').valid ){
       this.authService.login(val.email, val.password)
         .subscribe( (data) => {
-         console.log("User is logged in", data);
+         // console.log("User is logged in", data);
          this.setSession(data);
          this.router.navigateByUrl("/dashboard");
       }, error => {
-          console.log("Error ingreso", error);
+          // console.log("Error ingreso", error);
         }
       );
     }

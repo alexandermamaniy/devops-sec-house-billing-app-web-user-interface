@@ -64,7 +64,7 @@ export class NavbarComponent implements OnInit {
 
   }
   updateData(){
-    console.log("me llevo el evento");
+    // console.log("me llevo el evento");
   }
 
   ngOnInit() {

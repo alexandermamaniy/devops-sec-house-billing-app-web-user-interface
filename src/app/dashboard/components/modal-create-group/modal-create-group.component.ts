@@ -31,14 +31,14 @@ export class ModalCreateGroupComponent extends ModalOpenParent implements OnInit
   ngOnInit() {
     this.userService.getAllMembers().subscribe(data => {
       this.users = data;
-      console.log("from modal create group", this.users)
+      // console.log("from modal create group", this.users)
     })
 
   }
   create_group(){
     if(this.form.valid ){
       this.groupService.createGroup(this.form.value).subscribe(data=> {
-        console.log("response from server", data);
+        // console.log("response from server", data);
         this.form.reset();
         this.modalService.dismissAll();
         // this.createGroupEvent.emit(); // in case you want to emit event
