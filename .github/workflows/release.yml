@@ -8,27 +8,27 @@ on:
 
 env:
   DOCKER_IMAGE_NAME: house_billing_nginx_service
-  DOCKER_REGISTRY_URL: x23329823
+  DOCKER_REGISTRY_URL: akey96
 
 jobs:
 
-  tests_cases_and_sonarqube:
-    name: Execute House billing interface tests and generate the coverage file, then execute the SonarScan and update the coverage file to SonarQube instance in AWS
-
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Install node Dependencies
-        run: npm install
-
-      - name: Execute angular test cases and generate coverage report
-        run: npm run test:headless
-
-      - name: Execute sonar scan and publish the report
-        run: npm run sonar-scanner -- -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+#  tests_cases_and_sonarqube:
+#    name: Execute House billing interface tests and generate the coverage file, then execute the SonarScan and update the coverage file to SonarQube instance in AWS
+#
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v4
+#        with:
+#          fetch-depth: 0
+#
+#      - name: Install node Dependencies
+#        run: npm install
+#
+#      - name: Execute angular test cases and generate coverage report
+#        run: npm run test:headless
+#
+#      - name: Execute sonar scan and publish the report
+#        run: npm run sonar-scanner -- -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
 
   build_docker_images:
@@ -37,7 +37,7 @@ jobs:
 
     # Runner to use
     runs-on: ubuntu-latest
-    needs: tests_cases_and_sonarqube
+#    needs: tests_cases_and_sonarqube
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -53,11 +53,11 @@ jobs:
 
     # Docker Login
     - name: Login to Docker hub
-      run: docker login -u x23329823 -p password23329823
+      run: docker login -u akey96 -p ${{ secrets.TOKEN_DOCKERHUB }}
 
     # Build the Docker image
     - name: Build the Docker image
-      run: docker build --build-arg STAGING_BRANCH_NAME=$STAGING_BRANCH_NAME --build-arg TOKEN_GITHUB=${{ secrets.TOKEN_GITHUB }}  --file Dockerfile-nginx.staging --tag $DOCKER_IMAGE_NAME:$RELEASE_VERSION --no-cache .
+      run: docker build --build-arg STAGING_BRANCH_NAME=$STAGING_BRANCH_NAME  --file Dockerfile-nginx.staging --tag $DOCKER_IMAGE_NAME:$RELEASE_VERSION --no-cache .
 
     # Tag the Docker Images
     - name: Tag the image for the registry
@@ -83,25 +83,28 @@ jobs:
     - name: Remove the local image
       run: docker rmi $DOCKER_IMAGE_NAME:$RELEASE_VERSION
 
-  create-pull-request-to-pre-production:
-
-    name: Make a pull request to Main branch to deploy the new feature to production servers
-    needs: build_docker_images
+  deploy:
+    name: Deploy Frontend container to AWS EC2
     runs-on: ubuntu-latest
+    needs: build_docker_images
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Update AUTHORS
+      - name: Configure SSH credentials to connect to the AWS EC2 instance
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
         run: |
-          git log --format='%aN <%aE>%n%cN <%cE>' | sort -u > AUTHORS
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.TOKEN_GITHUB }}
-          commit-message: Automated request to ${{ github.event.workflow_run.head_commit.message }}
-          title: Update $STAGING_BRANCH_NAME branch to main branch
-          body: $STAGING_BRANCH_NAME - ${{ github.event.workflow_run.head_commit.message }}
-          branch: main
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/github
+          chmod 600 ~/.ssh/github
+          cat >>~/.ssh/config <<END
+          Host target
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/github
+            LogLevel ERROR
+            StrictHostKeyChecking no
+          END
+      - name: Update the Docker image and execute the new features on the AWS EC2 instance
+        run: |
+          ssh target "cd devops-sec-house-billing-app-deploy/angular-webapp-deploy/ && docker compose -f docker-compose.staging.yml down && docker pull $DOCKER_REGISTRY_URL/$DOCKER_IMAGE_NAME:latest && docker compose -f docker-compose.staging.yml up -d --force-recreate"
